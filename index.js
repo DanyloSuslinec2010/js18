@@ -1,19 +1,13 @@
 const categories = document.querySelectorAll("#categories .item");
 console.log(`У списку ${categories.length} категорії.`);
 
-categories.forEach((category) => {
-  const title = category.querySelector("h2").textContent;
-  const itemsCount = category.querySelectorAll("ul li").length;
+categories.forEach((item) => {
+  const title = item.querySelector("h2").textContent;
+  const elementsCount = item.querySelectorAll("ul li").length;
+
   console.log(`Категорія: ${title}`);
-  console.log(`Кількість елементів: ${itemsCount}`);
+  console.log(`Кількість елементів: ${elementsCount}`);
 });
-
-
-
-
-
-
-
 
 const ingredients = [
   "Картопля",
@@ -26,24 +20,13 @@ const ingredients = [
 
 const list = document.querySelector("#ingredients");
 
-const items = ingredients.map((ingredient) => {
+const items = ingredients.map((el) => {
   const li = document.createElement("li");
-  li.textContent = ingredient;
+  li.textContent = el;
   return li;
 });
 
 list.append(...items);
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -62,44 +45,29 @@ const images = [
   },
 ];
 
-const gallery = document.getElementById("gallery");
+const gallery = document.querySelector("#gallery");
 
 const markup = images
-  .map((image) => `<li><img src="${image.url}" alt="${image.alt}"></li>`)
+  .map((img) => `<li><img src="${img.url}" alt="${img.alt}"></li>`)
   .join("");
 
 gallery.insertAdjacentHTML("beforeend", markup);
 
-
-
-
-
-
-
-
-
-
-
-
 let counterValue = 0;
 
-const valueEl = document.getElementById("value");
-const decrementBtn = document.querySelector('[data-action="decrement"]');
-const incrementBtn = document.querySelector('[data-action="increment"]');
+const valueEl = document.querySelector("#value");
+const btnDecrement = document.querySelector('[data-action="decrement"]');
+const btnIncrement = document.querySelector('[data-action="increment"]');
 
-function updateDisplay() {
-  valueEl.textContent = counterValue;
-}
-
-function increment() {
+const increment = () => {
   counterValue += 1;
-  updateDisplay();
-}
+  valueEl.textContent = counterValue;
+};
 
-function decrement() {
+const decrement = () => {
   counterValue -= 1;
-  updateDisplay();
-}
+  valueEl.textContent = counterValue;
+};
 
-incrementBtn.addEventListener("click", increment);
-decrementBtn.addEventListener("click", decrement);
+btnIncrement.addEventListener("click", increment);
+btnDecrement.addEventListener("click", decrement);
